@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Microwave.Classes.Boundary
 {
-    internal class Buzzer: IBuzzer
+    public class Buzzer: IBuzzer
     {
         private IOutput _output;
 
@@ -20,8 +20,16 @@ namespace Microwave.Classes.Boundary
         {
             if(!IsPlaying)
             {
-                _output.OutputLine("");
+                for (int i = 0; i < 2; i++)
+                {
+                    _output.OutputLine("");
+                }
+                
+
+                IsPlaying = true;
             }
+
+            IsPlaying = false;
         }
     }
 }

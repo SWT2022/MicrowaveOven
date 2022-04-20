@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Microwave.Classes.Interfaces
 {
-    internal interface IBuzzer
+    public interface IBuzzer
     {
         void PlaySound();
 
