@@ -29,8 +29,8 @@ namespace Microwave.Classes.Controllers
         public CookController(
             ITimer timer,
             IDisplay display,
-            IBuzzer buzzer,
-            IPowerTube powerTube)
+            IPowerTube powerTube,
+            IBuzzer buzzer)
         {
             myTimer = timer;
             myDisplay = display;
