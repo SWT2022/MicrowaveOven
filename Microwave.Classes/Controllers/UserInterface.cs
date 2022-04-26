@@ -26,7 +26,6 @@ namespace Microwave.Classes.Controllers
             IButton timeButton,
             IButton startCancelButton,
             IDoor door,
-            IBuzzer buzzer,
             IDisplay display,
             ILight light,
             ICookController cooker)
@@ -38,7 +37,6 @@ namespace Microwave.Classes.Controllers
             door.Closed += new EventHandler(OnDoorClosed);
             door.Opened += new EventHandler(OnDoorOpened);
 
-            myBuzzer = buzzer;
             myCooker = cooker;
             myLight = light;
             myDisplay = display;

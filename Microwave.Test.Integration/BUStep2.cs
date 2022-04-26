@@ -51,7 +51,7 @@ namespace Microwave.Test.Integration
 
             ui = new UserInterface(
                 powerButton, timeButton, startCancelButton,
-                door, buzzer, 
+                door, 
                 display, light, cooker);
 
             cooker.UI = ui;

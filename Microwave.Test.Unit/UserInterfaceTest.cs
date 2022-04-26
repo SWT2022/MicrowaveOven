@@ -38,7 +38,6 @@ namespace Microwave.Test.Unit
             uut = new UserInterface(
                 powerButton, timeButton, startCancelButton,
                 door,
-                buzzer,
                 display,
                 light,
                 cooker);

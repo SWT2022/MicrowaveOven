@@ -28,7 +28,7 @@ namespace Microwave.App
 
             CookController cooker = new CookController(timer, display, powerTube, buzzer);
 
-            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, buzzer, display, light, cooker);
+            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
 
             // Finish the double association
             cooker.UI = ui;
