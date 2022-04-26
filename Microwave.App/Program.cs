@@ -40,11 +40,31 @@ namespace Microwave.App
             startCancelButton.Press();
 
             // The simple sequence should now run
+            System.Console.WriteLine("Add 5 seconds by pressing '+'");
 
-            System.Console.WriteLine("When you press enter, the program will stop");
+            System.Console.WriteLine("Substract 5 seconds by pressing '-'");
+
+            System.Console.WriteLine("When you press 'c', the program will stop");
             // Wait for input
 
             System.Console.ReadLine();
+
+            //while (true)
+            //{
+            //    switch (Console.ReadKey(true).KeyChar)
+            //    {
+            //        case '+':
+            //            timer.ChangeTime("+");
+            //            break;
+            //        case '-':
+            //            timer.ChangeTime("-");
+            //            break;
+            //        case 'c':
+            //            Environment.Exit(0);
+            //            break;
+            //    }
+            //}
+
         }
     }
 }

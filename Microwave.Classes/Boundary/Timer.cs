@@ -39,6 +39,11 @@ namespace Microwave.Classes.Boundary
             Expired?.Invoke(this, System.EventArgs.Empty);
         }
 
+        public void AddTime(int time)
+        {
+            TimeRemaining = time;
+        }
+
         private void OnTimerEvent(object sender, System.Timers.ElapsedEventArgs args)
         {
             // One tick has passed
@@ -49,6 +54,19 @@ namespace Microwave.Classes.Boundary
             if (TimeRemaining <= 0)
             {
                 Expire();
+            }
+        }
+
+        public void ChangeTime(string value)
+        {
+            if (value == "+")
+            {
+                TimeRemaining += 5;
+            }
+
+            else if (value == "-")
+            {
+                TimeRemaining -= 5;
             }
         }
 
