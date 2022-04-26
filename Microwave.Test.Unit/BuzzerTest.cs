@@ -20,7 +20,7 @@ namespace Microwave.Test.Unit
         }
 
         [Test]
-        public void NoSoundIsPlaying()
+        public void SoundIsPlayingExactlyThreeTimes()
         {
             // We don't need an assert, as an exception would fail the test case
             uut.PlaySound();

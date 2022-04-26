@@ -20,10 +20,11 @@ namespace Microwave.Classes.Boundary
         {
             if(!IsPlaying)
             {
-                for (int i = 0; i < 2; i++)
+                IsPlaying = true;
+                for (int i = 0; i < 3; i++)
                 {
                     _output.OutputLine("Beep");
-                    IsPlaying = true;
+                    
                 }
 
             }
