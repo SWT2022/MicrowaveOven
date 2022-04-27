@@ -10,7 +10,8 @@ namespace Microwave.Classes.Boundary
         public event EventHandler Expired;
         public event EventHandler TimerTick;
 
-        private System.Timers.Timer timer;
+        //made public
+        public System.Timers.Timer timer { get; private set; }
 
         public Timer()
         {
