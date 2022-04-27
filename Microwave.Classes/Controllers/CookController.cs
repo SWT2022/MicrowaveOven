@@ -32,11 +32,16 @@ namespace Microwave.Classes.Controllers
             myTimer = timer;
             myDisplay = display;
             myPowerTube = powerTube;
+            
 
             timer.Expired += new EventHandler(OnTimerExpired);
             timer.TimerTick += new EventHandler(OnTimerTick);
         }
-
+        public int GetWattPower()
+        {
+            Console.WriteLine("Powertube Watt configuration: " + myPowerTube.wattPower);
+            return myPowerTube.wattPower;
+        }
         public void StartCooking(int power, int time)
         {
             myPowerTube.TurnOn(power);

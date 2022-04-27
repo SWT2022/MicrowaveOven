@@ -6,7 +6,7 @@ namespace Microwave.App
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args) 
         {
             Button startCancelButton = new Button();
             Button powerButton = new Button();
@@ -26,6 +26,7 @@ namespace Microwave.App
             Microwave.Classes.Boundary.Timer timer = new Timer();
 
             CookController cooker = new CookController(timer, display, powerTube);
+            cooker.GetWattPower();
 
             UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
 
