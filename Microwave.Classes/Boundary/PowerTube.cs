@@ -5,7 +5,7 @@ namespace Microwave.Classes.Boundary
 {
     public class PowerTube : IPowerTube
     {
-        public int wattPower { get; private set; }
+        public int wattPower { get;  set; }
 
         private IOutput myOutput;
 
