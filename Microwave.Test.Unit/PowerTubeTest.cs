@@ -67,5 +67,14 @@ namespace Microwave.Test.Unit
         {
             Assert.That(uut.wattPower, Is.EqualTo(900));
         }
+        
+        [TestCase(0)]
+        [TestCase(901)]
+        [TestCase(950)]
+        public void Set_WattPower_return_Correct( int watt)
+        {
+            uut.wattPower = watt;
+            Assert.That(uut.wattPower, Is.EqualTo(watt));
+        }
     }
 }
