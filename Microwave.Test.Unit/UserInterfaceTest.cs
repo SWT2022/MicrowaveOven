@@ -166,17 +166,7 @@ namespace Microwave.Test.Unit
             display.Received(1).ShowTime(Arg.Is<int>(2), Arg.Is<int>(0));
         }
 
-        //[Test]
-        //public void SetTime_StartButton_CookerIsCalled()
-        //{
-        //    powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetPower
-        //    timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetTime
-        //    startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-        //    cooker.Received(1).StartCooking(50,60));
-        //}
 
         [Test]
         public void SetTime_DoorOpened_DisplayCleared()
@@ -219,23 +209,6 @@ namespace Microwave.Test.Unit
             
         }
 
-        //[Test]
-        //public void Ready_FullPower_CookerIsCalledCorrectly()
-        //{
-        //    for (int i = 50; i <= 900; i += 50)
-        //    {
-        //        powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    }
-
-        //    timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetTime
-
-        //    // Should call with correct values
-        //    startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-
-        //    cooker.Received(1).StartCooking(900, 60);
-
-        //}
 
 
         [Test]
@@ -280,21 +253,6 @@ namespace Microwave.Test.Unit
             display.Received(1).Clear();
         }
 
-        //[Test]
-        //public void Cooking_DoorIsOpened_CookerCalled()
-        //{
-        //    powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetPower
-        //    timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetTime
-        //    startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in cooking
-
-        //    // Open door
-        //    door.Opened += Raise.EventWith(this, EventArgs.Empty);
-
-        //    cooker.Received(1).Stop();
-        //}
 
         [Test]
         public void Cooking_DoorIsOpened_DisplayCleared()
@@ -312,21 +270,6 @@ namespace Microwave.Test.Unit
             display.Received(1).Clear();
         }
 
-        //[Test]
-        //public void Cooking_CancelButton_CookerCalled()
-        //{
-        //    powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetPower
-        //    timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in SetTime
-        //    startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    // Now in cooking
-
-        //    // Open door
-        //    startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-
-        //    cooker.Received(1).Stop();
-        //}
 
         [Test]
         public void Cooking_CancelButton_LightCalled()
