@@ -66,7 +66,14 @@ namespace Microwave.Classes.Boundary
 
             else if (value == "-")
             {
-                TimeRemaining -= 5;
+                if (TimeRemaining <= 5)
+                {
+                    Expire();
+                }
+                else
+                {
+                    TimeRemaining -= 5;
+                }
             }
         }
 
