@@ -344,7 +344,11 @@ namespace Microwave.Test.Unit
             light.Received(1).TurnOff();
         }
 
-
+        [Test]
+        public void Get_WattPower_return_Correct()
+        {
+            Assert.That(uut.GetWattPower, Is.EqualTo(900));
+        }
     }
 
 }
