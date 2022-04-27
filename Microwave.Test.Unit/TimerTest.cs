@@ -126,6 +126,33 @@ namespace Microwave.Test.Unit
             Assert.That(!pause.WaitOne(2100));
         }
 
+        [Test]
+        public void ChangeTime_AddTimeCorrectly()
+        {
+            int timeNow = uut.TimeRemaining;
+            uut.ChangeTime("+");
+            Assert.That(uut.TimeRemaining, Is.EqualTo(timeNow + 5));
+        }
+
+
+        [Test]
+        public void ChangeTime_SubstractTimeCorrectly()
+        {
+            uut.AddTime(10);
+            int timeNow = uut.TimeRemaining;
+            uut.ChangeTime("-");
+            Assert.That(uut.TimeRemaining, Is.EqualTo(timeNow - 5));
+        }
+
+        [Test]
+        public void ChangeTime_SubstractToExpire()
+        {
+            uut.AddTime(5);
+            uut.ChangeTime("-");
+            Assert.That(uut.timer.Enabled == false);
+        }
+
+
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
