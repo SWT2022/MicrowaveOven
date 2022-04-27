@@ -39,7 +39,7 @@ namespace Microwave.Classes.Controllers
         }
         public int GetWattPower()
         {
-            Console.WriteLine("Powertube Watt configuration: " + myPowerTube.wattPower);
+            //Console.WriteLine("Powertube Watt configuration from CookController: " + myPowerTube.wattPower);
             return myPowerTube.wattPower;
         }
         public void StartCooking(int power, int time)

@@ -19,7 +19,7 @@ namespace Microwave.App
             Display display = new Display(output);
 
             PowerTube powerTube = new PowerTube(output, 900);
-            Console.WriteLine(powerTube.wattPower);
+            //Console.WriteLine(powerTube.wattPower);
 
             Light light = new Light(output);
 
@@ -29,9 +29,13 @@ namespace Microwave.App
             cooker.GetWattPower();
 
             UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+            ui.GetWattPower();
+
 
             // Finish the double association
             cooker.UI = ui;
+
+           
 
             // Simulate a simple sequence
 

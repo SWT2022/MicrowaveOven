@@ -41,6 +41,13 @@ namespace Microwave.Classes.Controllers
             myDisplay = display;
         }
 
+        public int GetWattPower()
+        {
+            int value = myCooker.GetWattPower();
+            //Console.WriteLine("Powertube Watt configuration from UI: " + myCooker.GetWattPower());
+            return value;
+        }
+
         private void ResetValues()
         {
             powerLevel = 50;
@@ -56,7 +63,7 @@ namespace Microwave.Classes.Controllers
                     myState = States.SETPOWER;
                     break;
                 case States.SETPOWER:
-                    powerLevel = (powerLevel >= 700 ? 50 : powerLevel+50);
+                    powerLevel = (powerLevel >= myCooker.GetWattPower() ? 50 : powerLevel+50);
                     myDisplay.ShowPower(powerLevel);
                     break;
             }

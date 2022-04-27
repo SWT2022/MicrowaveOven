@@ -8,6 +8,7 @@ namespace Microwave.Classes.Interfaces
 {
     public interface ICookController
     {
+        int GetWattPower();
         void StartCooking(int power, int time);
         void Stop();
     }
