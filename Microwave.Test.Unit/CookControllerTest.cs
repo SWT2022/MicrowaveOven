@@ -88,5 +88,15 @@ namespace Microwave.Test.Unit
         {
             Assert.That(uut.GetWattPower, Is.EqualTo(900));
         }
+
+        [Test]
+        public void PowerTubeHW_WattPower_Returns_Correct()
+        {
+            powerTube.wattPower = 500;
+            uut = new CookController(timer, display, powerTube, ui);
+
+            Assert.That(uut.GetWattPower, Is.EqualTo(500));
+        }
+
     }
 }
