@@ -49,21 +49,21 @@ namespace Microwave.App
 
             System.Console.ReadLine();
 
-            //while (true)
-            //{
-            //    switch (Console.ReadKey(true).KeyChar)
-            //    {
-            //        case '+':
-            //            timer.ChangeTime("+");
-            //            break;
-            //        case '-':
-            //            timer.ChangeTime("-");
-            //            break;
-            //        case 'c':
-            //            Environment.Exit(0);
-            //            break;
-            //    }
-            //}
+            while (true)
+            {
+                switch (Console.ReadKey(true).KeyChar)
+                {
+                    case '+':
+                        timer.ChangeTime("+");
+                        break;
+                    case '-':
+                        timer.ChangeTime("-");
+                        break;
+                    case 'c':
+                        Environment.Exit(0);
+                        break;
+                }
+            }
 
         }
     }
