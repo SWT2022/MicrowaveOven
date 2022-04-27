@@ -26,9 +26,9 @@ namespace Microwave.App
 
             Microwave.Classes.Boundary.Timer timer = new Timer();
 
-            CookController cooker = new CookController(timer, display, powerTube, buzzer);
+            CookController cooker = new CookController(timer, display, powerTube);
 
-            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker, buzzer);
 
             // Finish the double association
             cooker.UI = ui;
@@ -47,6 +47,8 @@ namespace Microwave.App
             // Wait for input
 
             System.Console.ReadLine();
+
+
         }
     }
 }

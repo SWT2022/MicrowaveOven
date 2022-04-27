@@ -46,13 +46,13 @@ namespace Microwave.Test.Integration
             light = new Light(output);
             buzzer = new Buzzer(output);
 
-            cooker = new CookController(timer, display, powerTube, buzzer);
+            cooker = new CookController(timer, display, powerTube);
 
 
             ui = new UserInterface(
                 powerButton, timeButton, startCancelButton,
                 door, 
-                display, light, cooker);
+                display, light, cooker, buzzer);
 
             cooker.UI = ui;
 
