@@ -8,7 +8,7 @@ namespace Microwave.Test.Unit
     [TestFixture]
     public class BuzzerTest
     {
-        private IBuzzer uut;
+        private Buzzer uut;
         private IOutput output;
 
         [SetUp]
@@ -28,14 +28,32 @@ namespace Microwave.Test.Unit
             output.Received(3).OutputLine(Arg.Is<string>(str => str.Contains("Beep")));
         }
 
-        //[Test]
-        //public void Press_1subscriber_IsNotified()
-        //{
-        //    bool notified = false;
+        [Test]
+        public void SoundIsPlayingExactlySixTimes()
+        {
+            // We don't need an assert, as an exception would fail the test case
+            uut.PlaySound();
 
-        //    uut.Pressed += (sender, args) => notified = true;
-        //    uut.Press();
-        //    Assert.That(notified, Is.EqualTo(true));
-        //}
+            uut.PlaySound();
+
+            output.Received(6).OutputLine(Arg.Is<string>(str => str.Contains("Beep")));
+        }
+
+
+        [Test]
+        public void InitialStateIsFalse()
+        {
+
+            Assert.That(uut.IsPlaying == false);
+        }
+
+        [Test]
+        public void WhilePlayingStateIsTrue()
+        {
+            uut.PlaySound();
+            Assert.That(uut.IsPlaying == false);
+        }
+
+
     }
 }

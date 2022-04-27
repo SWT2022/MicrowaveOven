@@ -99,7 +99,7 @@ namespace Microwave.Classes.Controllers
                     myCooker.Stop();
                     myLight.TurnOff();
                     myDisplay.Clear();
-                    myBuzzer.PlaySound();
+                    
                     myState = States.READY;
                     break;
             }
