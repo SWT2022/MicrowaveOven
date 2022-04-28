@@ -130,17 +130,17 @@ namespace Microwave.Test.Unit
         public void ChangeTime_AddTimeCorrectly()
         {
             int timeNow = uut.TimeRemaining;
-            uut.ChangeTime("+");
+            uut.AddTime();
             Assert.That(uut.TimeRemaining, Is.EqualTo(timeNow + 5));
         }
 
 
         [Test]
-        public void ChangeTime_SubstractTimeCorrectly()
+        public void SubstractTimeCorrectly()
         {
             uut.AddTime(10);
             int timeNow = uut.TimeRemaining;
-            uut.ChangeTime("-");
+            uut.SubstractTime();
             Assert.That(uut.TimeRemaining, Is.EqualTo(timeNow - 5));
         }
 
@@ -148,7 +148,7 @@ namespace Microwave.Test.Unit
         public void ChangeTime_SubstractToExpire()
         {
             uut.AddTime(5);
-            uut.ChangeTime("-");
+            uut.SubstractTime();
             Assert.That(uut.timer.Enabled == false);
         }
 
