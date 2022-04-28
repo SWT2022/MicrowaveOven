@@ -76,5 +76,26 @@ namespace Microwave.Classes.Controllers
                 myDisplay.ShowTime(remaining / 60, remaining % 60);
             }
         }
+
+        public void AddTime(object sender, EventArgs e)
+        {
+            
+            if (isCooking)
+            {
+                myTimer.AddTime();
+                int remaining = myTimer.TimeRemaining;
+                myDisplay.ShowTime(remaining / 60, remaining % 60);
+            }
+        }
+
+        public void SubstractTime(object sender, EventArgs e)
+        {
+            if (isCooking)
+            {
+                myTimer.SubstractTime();
+                int remaining = myTimer.TimeRemaining;
+                myDisplay.ShowTime(remaining/60, remaining % 60);
+            }
+        }
     }
 }

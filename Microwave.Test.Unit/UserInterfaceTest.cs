@@ -17,6 +17,11 @@ namespace Microwave.Test.Unit
         private IButton powerButton;
         private IButton timeButton;
         private IButton startCancelButton;
+
+        //new button time
+        private IButton addTimeButton;
+        private IButton substractTimeButton;
+
         private IPowerTube powerTube;
         private IDoor door;
         private IOutput output;
@@ -32,6 +37,9 @@ namespace Microwave.Test.Unit
             powerButton = Substitute.For<IButton>();
             timeButton = Substitute.For<IButton>();
             startCancelButton = Substitute.For<IButton>();
+            //new buttons for time
+            addTimeButton = Substitute.For<IButton>();
+            substractTimeButton = Substitute.For<IButton>();
             door = Substitute.For<IDoor>();
             light = Substitute.For<ILight>();
             display = Substitute.For<IDisplay>();
@@ -49,7 +57,7 @@ namespace Microwave.Test.Unit
 
 
             uut = new UserInterface(
-                powerButton, timeButton, startCancelButton,
+                powerButton, timeButton, startCancelButton, addTimeButton, substractTimeButton,
                 door,
                 display,
                 light,
@@ -337,6 +345,39 @@ namespace Microwave.Test.Unit
 
             
             Assert.That(uut.GetWattPower, Is.EqualTo(900));
+        }
+        [Test]
+        public void AddTimeDuringCooking()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            //add time
+            addTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            cooker.Received(1).AddTime(this, EventArgs.Empty);
+
+        }
+
+        [Test]
+        public void SubstractTimeDuringCooking()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            //add time
+            substractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            cooker.Received(1).SubstractTime(this, EventArgs.Empty);
+
         }
     }
 
