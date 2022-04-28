@@ -24,6 +24,8 @@ namespace Microwave.Classes.Controllers
             IButton powerButton,
             IButton timeButton,
             IButton startCancelButton,
+            IButton addTimeButton, //new button
+            IButton substractTimeButton, //new button
             IDoor door,
             IDisplay display,
             ILight light,
@@ -32,6 +34,9 @@ namespace Microwave.Classes.Controllers
             powerButton.Pressed += new EventHandler(OnPowerPressed);
             timeButton.Pressed += new EventHandler(OnTimePressed);
             startCancelButton.Pressed += new EventHandler(OnStartCancelPressed);
+
+            addTimeButton.Pressed += new EventHandler(AddTimePressed); //New button
+            substractTimeButton.Pressed += new EventHandler(SubstractTimePressed); //New button
 
             door.Closed += new EventHandler(OnDoorClosed);
             door.Opened += new EventHandler(OnDoorOpened);
@@ -45,6 +50,26 @@ namespace Microwave.Classes.Controllers
         {
             powerLevel = 50;
             time = 1;
+        }
+
+        public void AddTimePressed(object sender, EventArgs e)
+        {
+            switch (myState)
+            {
+                case States.COOKING:
+                    myCooker.AddTime(sender, e);
+                    break;
+            }
+        }
+
+        public void SubstractTimePressed(object sender, EventArgs e)
+        {
+            switch (myState)
+            {
+                case States.COOKING:
+                    myCooker.SubstractTime(sender, e);
+                    break;
+            }
         }
 
         public void OnPowerPressed(object sender, EventArgs e)

@@ -58,23 +58,37 @@ namespace Microwave.Classes.Boundary
             }
         }
 
-        public void ChangeTime(string value)
-        {
-            if (value == "+")
-            {
-                TimeRemaining += 5;
-            }
+        //public void ChangeTime(string value)
+        //{
+        //    if (value == "+")
+        //    {
+        //        TimeRemaining += 5;
+        //    }
 
-            else if (value == "-")
+        //    else if (value == "-")
+        //    {
+        //        if (TimeRemaining <= 5)
+        //        {
+        //            Expire();
+        //        }
+        //        else
+        //        {
+        //            TimeRemaining -= 5;
+        //        }
+        //    }
+        //}
+
+        public void AddTime()
+        {
+            TimeRemaining += 5;
+        }
+
+        public void SubstractTime()
+        {
+            TimeRemaining -= 5;
+            if (TimeRemaining <= 0)
             {
-                if (TimeRemaining <= 5)
-                {
-                    Expire();
-                }
-                else
-                {
-                    TimeRemaining -= 5;
-                }
+                Expire();
             }
         }
 
