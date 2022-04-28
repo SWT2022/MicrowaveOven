@@ -12,6 +12,9 @@ namespace Microwave.App
             Button powerButton = new Button();
             Button timeButton = new Button();
 
+            Button addTimeButton = new Button();
+            Button substractTimeButton = new Button();
+
             Door door = new Door();
 
             Output output = new Output();
@@ -30,6 +33,7 @@ namespace Microwave.App
             CookController cooker = new CookController(timer, display, powerTube);
             cooker.GetWattPower();
 
+            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, addTimeButton, substractTimeButton, door, display, light, cooker);
             UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker, buzzer);
             
             ui.GetWattPower();
@@ -48,6 +52,7 @@ namespace Microwave.App
 
             startCancelButton.Press();
 
+
             // The simple sequence should now run
             System.Console.WriteLine("Add 5 seconds by pressing '+'");
 
@@ -63,10 +68,10 @@ namespace Microwave.App
                 switch (Console.ReadKey(true).KeyChar)
                 {
                     case '+':
-                        timer.ChangeTime("+");
+                        addTimeButton.Press();
                         break;
                     case '-':
-                        timer.ChangeTime("-");
+                        substractTimeButton.Press();
                         break;
                     case 'c':
                         Environment.Exit(0);
