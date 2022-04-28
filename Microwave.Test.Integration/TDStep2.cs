@@ -19,12 +19,14 @@ namespace Microwave.Test.Integration
         private UserInterface ui;
 
         private Light light;
+        private Buzzer buzzer;
         private Display display;
         private CookController cooker;
 
         private IPowerTube powerTube;
         private ITimer timer;
         private IOutput output;
+
 
         [SetUp]
         public void Setup()
@@ -39,11 +41,12 @@ namespace Microwave.Test.Integration
             output = Substitute.For<IOutput>();
 
             light = new Light(output);
+            buzzer = new Buzzer(output);
             display = new Display(output);
 
             cooker = new CookController(timer, display, powerTube);
 
-            ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+            ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker, buzzer);
             cooker.UI = ui;
         }
 
@@ -64,6 +67,22 @@ namespace Microwave.Test.Integration
             door.Close();
 
             output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("off")));
+        }
+        #endregion
+
+        #region UI_Buzzer
+
+        [Test]
+        public void UI_Buzzer_PlaySound()
+        {
+            powerButton.Press();
+            timeButton.Press();
+            startCancelButton.Press();
+
+            timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+
+            output.Received(3).OutputLine(Arg.Is<string>(str => str.Contains("Beep")));
+
         }
         #endregion
 

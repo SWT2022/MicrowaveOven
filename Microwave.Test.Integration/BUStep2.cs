@@ -21,6 +21,7 @@ namespace Microwave.Test.Integration
 
         private UserInterface ui;
         private Light light;
+        private Buzzer buzzer;
 
         private IButton powerButton;
         private IButton timeButton;
@@ -32,7 +33,6 @@ namespace Microwave.Test.Integration
         public void Setup()
         {
             output = Substitute.For<IOutput>();
-
             powerButton = Substitute.For<IButton>();
             timeButton = Substitute.For<IButton>();
             startCancelButton = Substitute.For<IButton>();
@@ -44,6 +44,7 @@ namespace Microwave.Test.Integration
             powerTube = new PowerTube(output, 900);
 
             light = new Light(output);
+            buzzer = new Buzzer(output);
 
             cooker = new CookController(timer, display, powerTube);
 
@@ -51,7 +52,7 @@ namespace Microwave.Test.Integration
             ui = new UserInterface(
                 powerButton, timeButton, startCancelButton,
                 door, 
-                display, light, cooker);
+                display, light, cooker, buzzer);
 
             cooker.UI = ui;
 
@@ -74,6 +75,21 @@ namespace Microwave.Test.Integration
             door.Closed += Raise.Event();
 
             output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("Light is turned off")));
+        }
+
+        #endregion
+
+        #region UserInterface_Buzzer
+        [Test]
+        public void UserInter_Buzzer_PlaySound()
+        {
+            powerButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+            startCancelButton.Pressed += Raise.Event();
+
+            Thread.Sleep(60500);
+
+            output.Received(3).OutputLine(Arg.Is<string>(str => str.Contains("Beep")));
         }
 
         #endregion
@@ -185,7 +201,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void UserInterface_CookController_CookingsIsDone()
+        public void UserInterface_CookController_CookingsIsDone_Light()
         {
             // Checks the call back from CookController to UserInterface
             powerButton.Pressed += Raise.Event();
@@ -198,6 +214,23 @@ namespace Microwave.Test.Integration
 
             // Now should have turned off light
             output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("Light is turned off")));
+
+        }
+
+        [Test]
+        public void UserInterface_CookController_CookingsIsDone_Buzzer()
+        {
+            // Checks the call back from CookController to UserInterface
+            powerButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+            startCancelButton.Pressed += Raise.Event();
+
+            // Should start cooking 
+            // Wait for expiration
+            Thread.Sleep(60500);
+
+            // Now should have turned off light
+            output.Received(3).OutputLine(Arg.Is<string>(str => str.Contains("Beep")));
 
         }
 
