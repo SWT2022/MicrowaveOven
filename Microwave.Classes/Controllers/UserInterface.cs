@@ -6,6 +6,7 @@ namespace Microwave.Classes.Controllers
 {
     public class UserInterface : IUserInterface
     {
+        //
         private enum States
         {
             READY, SETPOWER, SETTIME, COOKING, DOOROPEN
