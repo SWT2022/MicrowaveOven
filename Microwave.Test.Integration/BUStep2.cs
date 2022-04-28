@@ -26,6 +26,10 @@ namespace Microwave.Test.Integration
         private IButton timeButton;
         private IButton startCancelButton;
 
+        //new IButton for time
+        private IButton addTimeButton;
+        private IButton substractTimeButton;
+
         private IDoor door;
 
         [SetUp]
@@ -36,6 +40,11 @@ namespace Microwave.Test.Integration
             powerButton = Substitute.For<IButton>();
             timeButton = Substitute.For<IButton>();
             startCancelButton = Substitute.For<IButton>();
+
+            //new buttons time
+            addTimeButton = Substitute.For<IButton>();
+            substractTimeButton = Substitute.For<IButton>();
+
 
             door = Substitute.For<IDoor>();
 
@@ -49,7 +58,7 @@ namespace Microwave.Test.Integration
 
 
             ui = new UserInterface(
-                powerButton, timeButton, startCancelButton,
+                powerButton, timeButton, startCancelButton, addTimeButton, substractTimeButton,
                 door, 
                 display, light, cooker);
 
