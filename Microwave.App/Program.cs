@@ -16,6 +16,8 @@ namespace Microwave.App
 
             Output output = new Output();
 
+            Buzzer buzzer = new Buzzer(output);
+
             Display display = new Display(output);
 
             PowerTube powerTube = new PowerTube(output, 900);
@@ -28,7 +30,7 @@ namespace Microwave.App
             CookController cooker = new CookController(timer, display, powerTube);
             cooker.GetWattPower();
 
-            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, buzzer, display, light, cooker);
             ui.GetWattPower();
 
 

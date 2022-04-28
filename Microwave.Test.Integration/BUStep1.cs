@@ -32,7 +32,7 @@ namespace Microwave.Test.Integration
 
             ui = Substitute.For<IUserInterface>();
 
-            cooker = new CookController(timer, display, powerTube, buzzer, ui);
+            cooker = new CookController(timer, display, powerTube, ui);
         }
 
         #region CookController_PowerTube

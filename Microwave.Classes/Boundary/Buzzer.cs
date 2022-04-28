@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Microwave.Classes.Boundary
 {
-    internal class Buzzer: IBuzzer
+    public class Buzzer : IBuzzer
     {
         private IOutput _output;
 
-        private bool IsPlaying = false;
+        public bool IsPlaying { get; private set; } = false;
 
         public Buzzer(IOutput output)
         {
@@ -18,10 +18,20 @@ namespace Microwave.Classes.Boundary
 
         public void PlaySound()
         {
-            if(!IsPlaying)
+            if (!IsPlaying)
             {
-                _output.OutputLine("");
+                IsPlaying = true;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    _output.OutputLine("Beep");
+
+                }
+
             }
+
+            IsPlaying = false;
         }
+
     }
 }
