@@ -342,7 +342,39 @@ namespace Microwave.Test.Unit
             light.Received(1).TurnOff();
         }
 
+        [Test]
+        public void AddTimeDuringCooking()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
 
+            //add time
+            addTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            cooker.Received(1).AddTime(this, EventArgs.Empty);
+
+        }
+
+        [Test]
+        public void SubstractTimeDuringCooking()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            //add time
+            substractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            cooker.Received(1).SubstractTime(this, EventArgs.Empty);
+
+        }
     }
 
 }
