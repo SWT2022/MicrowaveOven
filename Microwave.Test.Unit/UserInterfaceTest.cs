@@ -44,6 +44,9 @@ namespace Microwave.Test.Unit
                 buzzer);
         }
 
+
+  
+
         [Test]
         public void Ready_DoorOpen_LightOn()
         {
@@ -272,6 +275,21 @@ namespace Microwave.Test.Unit
             // Cooking is done
             uut.CookingIsDone();
             display.Received(1).Clear();
+        }
+
+        [Test]
+        public void Cooking_CookingIsDone_PlaySound()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            // Cooking is done
+            uut.CookingIsDone();
+            buzzer.Received(1).PlaySound();
         }
 
         [Test]

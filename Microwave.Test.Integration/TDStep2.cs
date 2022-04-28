@@ -70,6 +70,22 @@ namespace Microwave.Test.Integration
         }
         #endregion
 
+        #region UI_Buzzer
+
+        [Test]
+        public void UI_Buzzer_PlaySound()
+        {
+            powerButton.Press();
+            timeButton.Press();
+            startCancelButton.Press();
+
+            timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+
+            output.Received(3).OutputLine(Arg.Is<string>(str => str.Contains("Beep")));
+
+        }
+        #endregion
+
         #region UI_Display
 
         [Test]

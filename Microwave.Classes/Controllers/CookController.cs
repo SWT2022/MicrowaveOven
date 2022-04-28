@@ -19,7 +19,6 @@ namespace Microwave.Classes.Controllers
             ITimer timer,
             IDisplay display,
             IPowerTube powerTube,
-            IBuzzer buzzer,
             IUserInterface ui) : this(timer, display, powerTube)
         {
             UI = ui;
@@ -28,7 +27,8 @@ namespace Microwave.Classes.Controllers
         public CookController(
             ITimer timer,
             IDisplay display,
-            IPowerTube powerTube)
+            IPowerTube powerTube
+            )
         {
             myTimer = timer;
             myDisplay = display;
