@@ -24,6 +24,7 @@ namespace Microwave.Test.Integration
 
         private UserInterface ui;
 
+        private Buzzer buzzer;
         private Light light;
         private Display display;
         private CookController cooker;
@@ -48,14 +49,16 @@ namespace Microwave.Test.Integration
             output = Substitute.For<IOutput>();
 
             light = new Light(output);
+            buzzer = new Buzzer(output);
             display = new Display(output);
-            powerTube = new PowerTube(output);
+            powerTube = new PowerTube(output, 900);
             timer = new Timer();
 
 
             cooker = new CookController(timer, display, powerTube);
 
             ui = new UserInterface(powerButton, timeButton, startCancelButton, addTimeButton, substractTimeButton, door, display, light, cooker);
+            ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker, buzzer);
             cooker.UI = ui;
         }
 
@@ -159,13 +162,15 @@ namespace Microwave.Test.Integration
 
             light = new Light(output);
             display = new Display(output);
-            powerTube = new PowerTube(output);
+            powerTube = new PowerTube(output, 900);
             var faketimer = Substitute.For<ITimer>();
 
             // Make a new cooker, with the 
             cooker = new CookController(faketimer, display, powerTube);
             // Then we must make a new UI
             ui = new UserInterface(
+                powerButton, timeButton, startCancelButton,
+                door, display, light, cooker, buzzer);
                 powerButton, timeButton, startCancelButton, addTimeButton, substractTimeButton,
                 door, display, light, cooker);
             // And make the association
@@ -253,6 +258,7 @@ namespace Microwave.Test.Integration
             output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("Light is turned off")));
 
         }
+
 
         #endregion
 

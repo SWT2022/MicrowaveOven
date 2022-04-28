@@ -6,7 +6,7 @@ namespace Microwave.App
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args) 
         {
             Button startCancelButton = new Button();
             Button powerButton = new Button();
@@ -19,20 +19,30 @@ namespace Microwave.App
 
             Output output = new Output();
 
+            Buzzer buzzer = new Buzzer(output);
+
             Display display = new Display(output);
 
-            PowerTube powerTube = new PowerTube(output);
+            PowerTube powerTube = new PowerTube(output, 900);
 
             Light light = new Light(output);
+
 
             Microwave.Classes.Boundary.Timer timer = new Timer();
 
             CookController cooker = new CookController(timer, display, powerTube);
+            cooker.GetWattPower();
 
             UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, addTimeButton, substractTimeButton, door, display, light, cooker);
+            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker, buzzer);
+            
+            ui.GetWattPower();
+
 
             // Finish the double association
             cooker.UI = ui;
+
+           
 
             // Simulate a simple sequence
 

@@ -16,7 +16,7 @@ namespace Microwave.Test.Unit
         public void Setup()
         {
             output = Substitute.For<IOutput>();
-            uut = new PowerTube(output);
+            uut = new PowerTube(output, 900);
         }
 
         [TestCase(1)]
@@ -33,8 +33,8 @@ namespace Microwave.Test.Unit
         [TestCase(-5)]
         [TestCase(-1)]
         [TestCase(0)]
-        [TestCase(701)]
-        [TestCase(750)]
+        [TestCase(901)]
+        [TestCase(950)]
         public void TurnOn_WasOffOutOfRangePower_ThrowsException(int power)
         {
             Assert.Throws<System.ArgumentOutOfRangeException>(() => uut.TurnOn(power));
@@ -60,6 +60,21 @@ namespace Microwave.Test.Unit
         {
             uut.TurnOn(50);
             Assert.Throws<System.ApplicationException>(() => uut.TurnOn(60));
+        }
+
+        [Test]
+        public void Get_WattPower_return_Correct()
+        {
+            Assert.That(uut.wattPower, Is.EqualTo(900));
+        }
+        
+        [TestCase(0)]
+        [TestCase(901)]
+        [TestCase(950)]
+        public void Set_WattPower_return_Correct( int watt)
+        {
+            uut.wattPower = watt;
+            Assert.That(uut.wattPower, Is.EqualTo(watt));
         }
     }
 }

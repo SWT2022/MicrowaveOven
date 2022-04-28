@@ -23,7 +23,7 @@ namespace Microwave.Test.Unit
             timer = Substitute.For<ITimer>();
             display = Substitute.For<IDisplay>();
             powerTube = Substitute.For<IPowerTube>();
-
+            powerTube.wattPower = 900;
             uut = new CookController(timer, display, powerTube, ui);
         }
 
@@ -98,5 +98,20 @@ namespace Microwave.Test.Unit
             uut.SubstractTime(this, EventArgs.Empty);
             display.Received(1).ShowTime(timer.TimeRemaining / 60, timer.TimeRemaining % 60);
         }
+        [Test]
+        public void Get_WattPower_return_Correct()
+        {
+            Assert.That(uut.GetWattPower, Is.EqualTo(900));
+        }
+
+        [Test]
+        public void PowerTubeHW_WattPower_Returns_Correct()
+        {
+            powerTube.wattPower = 500;
+            uut = new CookController(timer, display, powerTube, ui);
+
+            Assert.That(uut.GetWattPower, Is.EqualTo(500));
+        }
+
     }
 }

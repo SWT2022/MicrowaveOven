@@ -6,6 +6,7 @@ namespace Microwave.Classes.Controllers
 {
     public class UserInterface : IUserInterface
     {
+        //
         private enum States
         {
             READY, SETPOWER, SETTIME, COOKING, DOOROPEN
@@ -16,6 +17,7 @@ namespace Microwave.Classes.Controllers
         private ICookController myCooker;
         private ILight myLight;
         private IDisplay myDisplay;
+        private IBuzzer myBuzzer;
 
         private int powerLevel = 50;
         private int time = 1;
@@ -29,7 +31,8 @@ namespace Microwave.Classes.Controllers
             IDoor door,
             IDisplay display,
             ILight light,
-            ICookController cooker)
+            ICookController cooker,
+            IBuzzer buzzer)
         {
             powerButton.Pressed += new EventHandler(OnPowerPressed);
             timeButton.Pressed += new EventHandler(OnTimePressed);
@@ -41,9 +44,17 @@ namespace Microwave.Classes.Controllers
             door.Closed += new EventHandler(OnDoorClosed);
             door.Opened += new EventHandler(OnDoorOpened);
 
+            myBuzzer = buzzer;
             myCooker = cooker;
             myLight = light;
             myDisplay = display;
+        }
+
+        public int GetWattPower()
+        {
+            int value = myCooker.GetWattPower();
+            //Console.WriteLine("Powertube Watt configuration from UI: " + myCooker.GetWattPower());
+            return value;
         }
 
         private void ResetValues()
@@ -81,7 +92,7 @@ namespace Microwave.Classes.Controllers
                     myState = States.SETPOWER;
                     break;
                 case States.SETPOWER:
-                    powerLevel = (powerLevel >= 700 ? 50 : powerLevel+50);
+                    powerLevel = (powerLevel >= myCooker.GetWattPower() ? 50 : powerLevel+50);
                     myDisplay.ShowPower(powerLevel);
                     break;
             }
@@ -121,6 +132,7 @@ namespace Microwave.Classes.Controllers
                     myCooker.Stop();
                     myLight.TurnOff();
                     myDisplay.Clear();
+                    
                     myState = States.READY;
                     break;
             }
@@ -174,7 +186,7 @@ namespace Microwave.Classes.Controllers
                     ResetValues();
                     myDisplay.Clear();
                     myLight.TurnOff();
-                    // Beep 3 times
+                    myBuzzer.PlaySound();
                     myState = States.READY;
                     break;
             }
