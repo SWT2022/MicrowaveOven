@@ -17,6 +17,11 @@ namespace Microwave.Test.Unit
         private IButton powerButton;
         private IButton timeButton;
         private IButton startCancelButton;
+
+        //new button time
+        private IButton addTimeButton;
+        private IButton substractTimeButton;
+
         private IPowerTube powerTube;
         private IDoor door;
         private IOutput output;
@@ -49,7 +54,7 @@ namespace Microwave.Test.Unit
 
 
             uut = new UserInterface(
-                powerButton, timeButton, startCancelButton,
+                powerButton, timeButton, startCancelButton, addTimeButton, substractTimeButton,
                 door,
                 display,
                 light,
