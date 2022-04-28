@@ -9,7 +9,7 @@ namespace Microwave.Classes.Controllers
         // It also demonstrates property dependency injection
         public IUserInterface UI { set; private get; }
 
-        private bool isCooking = false;
+        public bool isCooking { get; private set; } = false;
 
         private IDisplay myDisplay;
         private IPowerTube myPowerTube;

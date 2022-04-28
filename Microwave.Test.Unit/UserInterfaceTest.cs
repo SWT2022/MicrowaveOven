@@ -39,9 +39,14 @@ namespace Microwave.Test.Unit
             buzzer = Substitute.For<IBuzzer>();
 
             powerTube = Substitute.For<IPowerTube>();
-            powerTube.wattPower = 900;
+
+            //powerTube.wattPower = 900;
+
 
             cooker = Substitute.For<ICookController>();
+            //cooker = new CookController(timer, display, powerTube);
+
+
 
             uut = new UserInterface(
                 powerButton, timeButton, startCancelButton,
@@ -50,6 +55,7 @@ namespace Microwave.Test.Unit
                 light,
                 cooker,
                 buzzer);
+            uut.GetWattPower().Returns(900);
         }
 
 
@@ -276,6 +282,8 @@ namespace Microwave.Test.Unit
         [Test]
         public void Cooking_DoorIsOpened_CookerCalled()
         {
+            //cooker = Substitute.For<ICookController>();
+
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             // Now in SetPower
             timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -286,6 +294,7 @@ namespace Microwave.Test.Unit
             // Open door
             door.Opened += Raise.EventWith(this, EventArgs.Empty);
 
+            //Assert.That(cooker.isCooking, Is.False);
             cooker.Received(1).Stop();
         }
 
@@ -325,6 +334,8 @@ namespace Microwave.Test.Unit
         [Test]
         public void Get_WattPower_return_Correct()
         {
+
+            
             Assert.That(uut.GetWattPower, Is.EqualTo(900));
         }
     }
