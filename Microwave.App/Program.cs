@@ -33,9 +33,8 @@ namespace Microwave.App
             CookController cooker = new CookController(timer, display, powerTube);
             cooker.GetWattPower();
 
-            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, addTimeButton, substractTimeButton, door, display, light, cooker);
-            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker, buzzer);
-            
+            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, addTimeButton, substractTimeButton, door, display, light, cooker, buzzer);
+
             ui.GetWattPower();
 
 
