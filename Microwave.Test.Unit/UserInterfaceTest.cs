@@ -42,16 +42,18 @@ namespace Microwave.Test.Unit
             powerTube.wattPower = 900;
 
             cooker = Substitute.For<ICookController>();
-            cooker = new CookController(timer, display, powerTube);
 
             uut = new UserInterface(
                 powerButton, timeButton, startCancelButton,
                 door,
-                buzzer,
                 display,
                 light,
-                cooker);
+                cooker,
+                buzzer);
         }
+
+
+  
 
         [Test]
         public void Ready_DoorOpen_LightOn()
@@ -256,6 +258,36 @@ namespace Microwave.Test.Unit
             display.Received(1).Clear();
         }
 
+        [Test]
+        public void Cooking_CookingIsDone_PlaySound()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            // Cooking is done
+            uut.CookingIsDone();
+            buzzer.Received(1).PlaySound();
+        }
+
+        [Test]
+        public void Cooking_DoorIsOpened_CookerCalled()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            // Open door
+            door.Opened += Raise.EventWith(this, EventArgs.Empty);
+
+            cooker.Received(1).Stop();
+        }
 
         [Test]
         public void Cooking_DoorIsOpened_DisplayCleared()

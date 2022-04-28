@@ -27,12 +27,14 @@ namespace Microwave.Classes.Controllers
         public CookController(
             ITimer timer,
             IDisplay display,
-            IPowerTube powerTube)
+            IPowerTube powerTube
+            )
         {
             myTimer = timer;
             myDisplay = display;
             myPowerTube = powerTube;
             
+
 
             timer.Expired += new EventHandler(OnTimerExpired);
             timer.TimerTick += new EventHandler(OnTimerTick);

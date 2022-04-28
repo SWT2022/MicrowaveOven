@@ -18,14 +18,14 @@ namespace Microwave.Classes.Boundary
 
         public void PlaySound()
         {
-            if (!IsPlaying)
+            if(!IsPlaying)
             {
                 IsPlaying = true;
 
                 for (int i = 0; i < 3; i++)
                 {
                     _output.OutputLine("Beep");
-
+                    
                 }
 
             }
